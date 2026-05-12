@@ -130,43 +130,41 @@ textarea {
 .hero {
   position: relative;
   display: grid;
-  align-items: center;
-  min-height: 650px;
+  grid-template-columns: minmax(0, 0.96fr) minmax(360px, 0.86fr);
+  align-items: stretch;
+  gap: clamp(28px, 5vw, 62px);
+  min-height: 620px;
   margin: 80px auto 20px;
   width: min(1160px, calc(100% - 40px));
-  padding: clamp(44px, 7vw, 80px);
+  padding: clamp(28px, 4.8vw, 54px);
   overflow: hidden;
   background: var(--surface);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  isolation: isolate;
-}
-
-.hero-media,
-.hero-overlay {
-  position: absolute;
-  inset: 0;
 }
 
 .hero-media {
-  z-index: -2;
-  left: 50%;
+  order: 2;
+  min-height: 100%;
+  overflow: hidden;
+  border-radius: calc(var(--radius) - 4px);
+  background: #dfe5e8;
 }
 
 .hero-media img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
 .hero-overlay {
-  z-index: -1;
-  background:
-    linear-gradient(90deg, #ffffff 0%, rgba(255, 255, 255, 0.97) 40%, rgba(255, 255, 255, 0.32) 72%),
-    linear-gradient(0deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.22));
+  display: none;
 }
 
 .hero-content {
+  order: 1;
+  align-self: center;
   width: min(580px, 100%);
 }
 
@@ -535,11 +533,17 @@ textarea:focus {
   }
 
   .hero {
+    grid-template-columns: 1fr;
     min-height: 640px;
   }
 
   .hero-media {
-    left: 42%;
+    order: 1;
+    min-height: 310px;
+  }
+
+  .hero-content {
+    order: 2;
   }
 
   .spec-grid,
@@ -579,18 +583,16 @@ textarea:focus {
     width: calc(100% - 20px);
     min-height: auto;
     margin-top: 76px;
-    padding: 42px 30px 34px;
+    padding: 14px 14px 30px;
+    gap: 28px;
   }
 
   .hero-media {
-    inset: auto 0 0;
-    left: 0;
-    height: 330px;
-    opacity: 0.3;
+    min-height: 250px;
   }
 
-  .hero-overlay {
-    background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0.96) 58%, rgba(255, 255, 255, 0.72) 100%);
+  .hero-content {
+    padding: 0 16px;
   }
 
   h1 {
